@@ -1,16 +1,16 @@
 import pytest
 from backend.services.payment_processor import PaymentProcessor
 
-class DummyDB:
+class MockDB:
     def __init__(self, data=None):
         self.data = data or {}
-    def find(self, tid):
-        return self.data.get(tid)
-    def update(self, tid, val):
-        pass
+
+    def find(self, transaction_id):
+        return self.data.get(transaction_id)
 
 def test_process_refund_non_existent():
-    db = DummyDB({}) 
+    db = MockDB({})
     processor = PaymentProcessor(db)
-    with pytest.raises(ValueError, match="Transaction non_existent not found"):
-        processor.process_refund("non_existent")
+    success, message = processor.process_refund("non_existent_id", 50.0)
+    assert success is False
+    assert message == "Transaction not found"
