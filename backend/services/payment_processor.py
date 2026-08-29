@@ -19,9 +19,10 @@ class PaymentProcessor:
     def process_refund(self, transaction_id, amount):
         transaction = self.db.find(transaction_id)
 
-        if transaction is None:
+        if not transaction:
             return False, "Transaction not found"
 
+        # Bug 2: Missing null check when transaction does not exist
         if transaction["status"] != "completed":
             return False, "Transaction not eligible for refund"
 
