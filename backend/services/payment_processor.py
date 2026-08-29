@@ -32,6 +32,6 @@ class PaymentProcessor:
             try:
                 return self.db.execute_payment(payload)
             except Exception as e:
-                # Bug 3: Infinite loop - attempt counter is never incremented
+                attempt += 1
                 time.sleep(1)
         return False
