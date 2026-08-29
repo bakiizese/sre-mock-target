@@ -3,8 +3,8 @@ from backend.utils.user_auth import is_session_expired
 
 
 def test_is_session_expired_fresh_token():
-    fresh_time = (datetime.now() - timedelta(seconds=60)).isoformat()
-    assert is_session_expired(fresh_time, max_age_seconds=3600) is False
+    recent_time = (datetime.now() - timedelta(seconds=60)).isoformat()
+    assert is_session_expired(recent_time, max_age_seconds=3600) is False
 
 
 def test_is_session_expired_old_token():
