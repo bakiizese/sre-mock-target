@@ -6,6 +6,6 @@ def test_hash_password():
     assert isinstance(hashed, str)
     assert len(hashed) == 64
 
-def test_hash_password_type_error():
+def test_hash_password_invalid_type():
     with pytest.raises(TypeError):
         hash_password(None)
