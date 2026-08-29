@@ -1,8 +1,8 @@
 import pytest
 from rate_calculator import calculate_rate
 
-def test_calculate_rate_normal():
+def test_calculate_rate_success():
     assert calculate_rate(10, 2) == 5.0
 
-def test_calculate_rate_zero_count():
+def test_calculate_rate_zero_division():
     assert calculate_rate(10, 0) == 0.0
