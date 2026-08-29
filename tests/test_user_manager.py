@@ -3,9 +3,14 @@ from user_manager import filter_active_users
 
 def test_filter_active_users():
     users = [
-        {"name": "Alice", "active": False},
+        {"name": "Alice", "active": True},
         {"name": "Bob", "active": False},
-        {"name": "Charlie", "active": True}
+        {"name": "Charlie", "active": False},
+        {"name": "Dave", "active": True}
     ]
-    filtered = filter_active_users(users)
-    assert filtered == [{"name": "Charlie", "active": True}]
+    result = filter_active_users(users)
+    expected = [
+        {"name": "Alice", "active": True},
+        {"name": "Dave", "active": True}
+    ]
+    assert result == expected
