@@ -1,7 +1,7 @@
 import pytest
 from math_helpers import calculate_rate
 
-def test_calculate_rate_normal():
+def test_calculate_rate_valid():
     assert calculate_rate(10, 2) == 5.0
 
 def test_calculate_rate_zero_count():
